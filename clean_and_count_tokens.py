@@ -1,8 +1,12 @@
 import re
 import sys
 
-f = open("./Wikipedia-LexicalAnalysis.xml", "r",encoding ='UTF-8')
+inFile = sys.argv[1]
+outFile = sys.argv[2]
+
+f = open(inFile, "r", encoding ='UTF-8')
 txt = f.read()
+
 
 #Remove  <...></something>
 x = re.sub("<(\/)?\w+(\/)?>", "" , txt)
@@ -35,11 +39,11 @@ for word in x:
         wordDict[word] = wordDict[word] + 1
 
 #open a new File
-newFile = open("lexical_analysis_out.txt", "a", encoding ='UTF-8')
+newFile = open(outFile, "a", encoding ='UTF-8')
 
 #print wordDict and store it as a string
 for word in wordDict:
-    newFile.write(str(wordDict.get(word)) + word + " ")
+    newFile.write(str(wordDict.get(word)) + word + " " + "\n")
 
 #write the result into a new txt
 #newFile.write(wordDict)
